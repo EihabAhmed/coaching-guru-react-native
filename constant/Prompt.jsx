@@ -33,7 +33,7 @@ export default {
         content: [
           {
             topic: '<Topic Name in 2 to 4 worlds ex.(Creating Variables)>'
-            explain: '< Detailed Explaination in 5 to 8 Lines if required>',
+            explain: '< Detailed Explanation in 5 to 8 Lines if required>',
             code: '<Code example of required else null',
             example: '< example of required else null'
           },

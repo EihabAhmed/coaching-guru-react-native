@@ -36,7 +36,7 @@ export default function AddCourse() {
     const PROMPT = userInput + Prompt.IDEA;
     const aiResp = await GenerateTopicsAIModel.sendMessage(PROMPT);
     const topicIdea = JSON.parse(aiResp.response.text());
-    console.log(topicIdea);
+    // console.log(topicIdea);
     setTopics(topicIdea?.course_titles);
     setLoading(false);
   };
@@ -67,7 +67,7 @@ export default function AddCourse() {
       const aiResp = await GenerateCourseAIModel.sendMessage(PROMPT);
       const resp = JSON.parse(aiResp.response.text());
       const courses = resp.courses;
-      console.log(courses);
+      courses;
       // Save Courses info to Database
       courses?.forEach(async (course) => {
         await setDoc(doc(db, "Courses", Date.now().toString()), {
@@ -182,11 +182,17 @@ export default function AddCourse() {
       </View>
 
       {selectedTopics?.length > 0 && (
-        <Button
-          text="Generate Course"
-          onPress={() => onGenerateCourse()}
-          loading={loading}
-        />
+        <View
+          style={{
+            marginBottom: 40,
+          }}
+        >
+          <Button
+            text="Generate Course"
+            onPress={() => onGenerateCourse()}
+            loading={loading}
+          />
+        </View>
       )}
     </ScrollView>
   );

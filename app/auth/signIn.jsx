@@ -8,6 +8,7 @@ import {
   Pressable,
   ToastAndroid,
   ActivityIndicator,
+  ScrollView,
 } from "react-native";
 import React, { useContext, useState } from "react";
 import Colors from "./../../constant/Colors";
@@ -32,120 +33,122 @@ export default function SignIn() {
     signInWithEmailAndPassword(auth, email, password)
       .then(async (resp) => {
         const user = resp.user;
-        console.log(user);
+        // console.log(user);
         await getUserDetail();
         setLoading(false);
         router.replace("/(tabs)/home");
       })
       .catch((e) => {
-        console.log(e.message);
+        e.message;
         setLoading(false);
         ToastAndroid.show("Incorrect Email & Password", ToastAndroid.BOTTOM);
       });
   };
 
   const getUserDetail = async () => {
-    const result = await getDoc(doc(db, "users", email));
-    console.log(result.data());
+    const result = await getDoc(doc(db, "Users", email));
+    // console.log(result.data());
     setUserDetail(result.data());
   };
 
   return (
-    <View
-      style={{
-        display: "flex",
-        alignItems: "center",
-        paddingTop: 100,
-        flex: 1,
-        padding: 25,
-        backgroundColor: Colors.WHITE,
-      }}
-    >
-      <Image
-        source={require("./../../assets/images/logo.png")}
-        style={{
-          width: 180,
-          height: 180,
-        }}
-      />
-
-      <Text
-        style={{
-          fontSize: 30,
-          fontFamily: "outfit-bold",
-        }}
-      >
-        Welcome Back
-      </Text>
-
-      <TextInput
-        placeholder="Email"
-        onChangeText={(value) => setEmail(value)}
-        style={styles.textInput}
-      />
-
-      <TextInput
-        placeholder="Password"
-        onChangeText={(value) => setPassword(value)}
-        secureTextEntry={true}
-        style={styles.textInput}
-      />
-
-      <TouchableOpacity
-        onPress={onSignInClick}
-        disabled={loading}
-        style={{
-          padding: 15,
-          backgroundColor: Colors.PRIMARY,
-          width: "100%",
-          marginTop: 25,
-          borderRadius: 10,
-        }}
-      >
-        {!loading ? (
-          <Text
-            style={{
-              fontFamily: "outfit",
-              fontSize: 20,
-              color: Colors.WHITE,
-              textAlign: "center",
-            }}
-          >
-            Sign In
-          </Text>
-        ) : (
-          <ActivityIndicator size={"large"} color={Colors.WHITE} />
-        )}
-      </TouchableOpacity>
-
+    <ScrollView>
       <View
         style={{
           display: "flex",
-          flexDirection: "row",
-          gap: 5,
-          marginTop: 20,
+          alignItems: "center",
+          paddingTop: 100,
+          flex: 1,
+          padding: 25,
+          backgroundColor: Colors.WHITE,
         }}
       >
+        <Image
+          source={require("./../../assets/images/logo.png")}
+          style={{
+            width: 180,
+            height: 180,
+          }}
+        />
+
         <Text
           style={{
-            fontFamily: "outfit",
+            fontSize: 30,
+            fontFamily: "outfit-bold",
           }}
         >
-          Don't have an account?
+          Welcome Back
         </Text>
 
-        <Pressable onPress={() => router.push("/auth/signUp")}>
+        <TextInput
+          placeholder="Email"
+          onChangeText={(value) => setEmail(value)}
+          style={styles.textInput}
+        />
+
+        <TextInput
+          placeholder="Password"
+          onChangeText={(value) => setPassword(value)}
+          secureTextEntry={true}
+          style={styles.textInput}
+        />
+
+        <TouchableOpacity
+          onPress={onSignInClick}
+          disabled={loading}
+          style={{
+            padding: 15,
+            backgroundColor: Colors.PRIMARY,
+            width: "100%",
+            marginTop: 25,
+            borderRadius: 10,
+          }}
+        >
+          {!loading ? (
+            <Text
+              style={{
+                fontFamily: "outfit",
+                fontSize: 20,
+                color: Colors.WHITE,
+                textAlign: "center",
+              }}
+            >
+              Sign In
+            </Text>
+          ) : (
+            <ActivityIndicator size={"large"} color={Colors.WHITE} />
+          )}
+        </TouchableOpacity>
+
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            gap: 5,
+            marginTop: 20,
+          }}
+        >
           <Text
             style={{
-              color: Colors.PRIMARY,
-              fontFamily: "outfit-bold",
+              fontFamily: "outfit",
             }}
           >
-            Create New Here
+            Don't have an account?
           </Text>
-        </Pressable>
+
+          <Pressable onPress={() => router.push("/auth/signUp")}>
+            <Text
+              style={{
+                color: Colors.PRIMARY,
+                fontFamily: "outfit-bold",
+              }}
+            >
+              Create New Here
+            </Text>
+          </Pressable>
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 

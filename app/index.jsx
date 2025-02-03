@@ -1,4 +1,11 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import Colors from "../constant/Colors";
 import { useRouter } from "expo-router";
 import { onAuthStateChanged } from "firebase/auth";
@@ -14,15 +21,15 @@ export default function Index() {
 
   onAuthStateChanged(auth, async (user) => {
     if (user) {
-      console.log(user);
-      const result = await getDoc(doc(db, "users", user?.email));
+      // console.log(user);
+      const result = await getDoc(doc(db, "Users", user?.email));
       setUserDetail(result.data());
       router.replace("/(tabs)/home");
     }
   });
 
   return (
-    <View
+    <ScrollView
       style={{
         flex: 1,
         backgroundColor: Colors.WHITE,
@@ -95,7 +102,7 @@ export default function Index() {
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
