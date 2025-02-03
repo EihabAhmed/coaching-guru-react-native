@@ -28,7 +28,7 @@ export default function CourseList({ courseList }) {
             <Image
               source={imageAssets[item.banner_image]}
               style={{
-                width: 260,
+                width: "100%",
                 height: 150,
                 borderRadius: 15,
               }}
@@ -64,5 +64,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.BG_GRAY,
     margin: 6,
     borderRadius: 15,
+    width: 260,
   },
 });
