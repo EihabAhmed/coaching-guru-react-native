@@ -2,6 +2,7 @@ import { FlatList, Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { imageAssets } from "./../../constant/Option";
 import Colors from "../../constant/Colors";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function CourseList({ courseList }) {
   return (
@@ -44,13 +45,25 @@ export default function CourseList({ courseList }) {
               {item?.courseTitle}
             </Text>
 
-            <Text
+            <View
               style={{
-                fontFamily: "outfit",
+                display: "flex",
+                flexDirection: "row",
+                gap: 5,
+                alignItems: "center",
+                marginTop: 5,
               }}
             >
-              {item?.chapters?.length} Chapters
-            </Text>
+              <Ionicons name="book-outline" size={20} color="black" />
+
+              <Text
+                style={{
+                  fontFamily: "outfit",
+                }}
+              >
+                {item?.chapters?.length} Chapters
+              </Text>
+            </View>
           </View>
         )}
       />
