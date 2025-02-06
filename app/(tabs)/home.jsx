@@ -34,14 +34,16 @@ export default function Home() {
 
   return (
     <FlatList
+      style={{
+        flex: 1,
+        backgroundColor: Colors.WHITE,
+      }}
       data={[]}
       ListHeaderComponent={
         <View
           style={{
             padding: 25,
             paddingTop: Platform.OS == "ios" && 45,
-            flex: 1,
-            backgroundColor: Colors.WHITE,
           }}
         >
           <Header />
