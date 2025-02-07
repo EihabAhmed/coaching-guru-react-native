@@ -13,12 +13,14 @@ import CourseProgress from "../../components/Home/CourseProgress";
 export default function Home() {
   const { userDetail, setUserDetail } = useContext(UserDetailContext);
   const [courseList, setCourseList] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     userDetail && GetCourseList();
   }, [userDetail]);
 
   const GetCourseList = async () => {
+    setLoading(true);
     setCourseList([]);
     const q = query(
       collection(db, "Courses"),
@@ -27,9 +29,10 @@ export default function Home() {
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach((doc) => {
-      console.log("--", doc.data());
+      // console.log("--", doc.data());
       setCourseList((prev) => [...prev, doc.data()]);
     });
+    setLoading(false);
   };
 
   return (
@@ -39,6 +42,8 @@ export default function Home() {
         backgroundColor: Colors.WHITE,
       }}
       data={[]}
+      onRefresh={() => GetCourseList()}
+      refreshing={loading}
       ListHeaderComponent={
         <View
           style={{
