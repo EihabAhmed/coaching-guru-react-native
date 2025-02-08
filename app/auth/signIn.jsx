@@ -52,7 +52,12 @@ export default function SignIn() {
   };
 
   return (
-    <ScrollView>
+    <ScrollView
+      style={{
+        flex: 1,
+        backgroundColor: Colors.WHITE,
+      }}
+    >
       <View
         style={{
           display: "flex",

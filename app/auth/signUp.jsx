@@ -53,7 +53,12 @@ export default function SignUp() {
   };
 
   return (
-    <ScrollView>
+    <ScrollView
+      style={{
+        flex: 1,
+        backgroundColor: Colors.WHITE,
+      }}
+    >
       <View
         style={{
           display: "flex",
