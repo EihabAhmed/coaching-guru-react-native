@@ -39,7 +39,7 @@ export default function Header() {
       </View>
 
       <TouchableOpacity>
-        <Ionicons name="settings-outline" size={32} color="black" />
+        <Ionicons name="settings-outline" size={32} color={Colors.WHITE} />
       </TouchableOpacity>
     </View>
   );

@@ -9,13 +9,14 @@ import {
 import React, { useState } from "react";
 import Colors from "../../constant/Colors";
 import * as Progress from "react-native-progress";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Button from "../../components/Shared/Button";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../config/firebaseConfig";
 
 export default function Quiz() {
+  const router = useRouter();
   const { courseParams } = useLocalSearchParams();
   const course = JSON.parse(courseParams);
   const quiz = course?.quiz;
@@ -50,6 +51,13 @@ export default function Quiz() {
         quizResult: result,
       });
       setLoading(false);
+
+      router.replace({
+        pathname: "/quiz/summary",
+        params: {
+          quizResultParam: JSON.stringify(result),
+        },
+      });
     } catch (e) {
       setLoading(false);
     }
