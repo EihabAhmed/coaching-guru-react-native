@@ -89,8 +89,8 @@ export default function Quiz() {
             alignItems: "center",
           }}
         >
-          <Pressable>
-            <Ionicons name="arrow-back" size={30} color="white" />
+          <Pressable onPress={() => router.back()}>
+            <Ionicons name="arrow-back" size={30} color={Colors.WHITE} />
           </Pressable>
           <Text
             style={{
