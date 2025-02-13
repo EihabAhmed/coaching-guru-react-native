@@ -12,7 +12,7 @@ import Colors from "../../constant/Colors";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
 
-export default function CourseList({ courseList }) {
+export default function CourseList({ courseList, heading = "Courses" }) {
   const route = useRouter();
 
   return (
@@ -27,7 +27,7 @@ export default function CourseList({ courseList }) {
           fontSize: 25,
         }}
       >
-        Courses
+        {heading}
       </Text>
 
       <FlatList
