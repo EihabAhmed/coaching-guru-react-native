@@ -9,8 +9,9 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../config/firebaseConfig";
 
 export default function CourseView() {
-  const { courseParams, courseId } = useLocalSearchParams();
+  const { courseParams, courseId, enrollParams } = useLocalSearchParams();
   const [course, setCourse] = useState([]);
+  const [enroll, setEnroll] = useState(false);
   // const course = JSON.parse(courseParams);
   // console.log(courseId);
 
@@ -20,6 +21,8 @@ export default function CourseView() {
     } else {
       setCourse(JSON.parse(courseParams));
     }
+
+    setEnroll(JSON.parse(enrollParams));
   }, [courseId]);
 
   const GetCourseById = async () => {
@@ -39,7 +42,7 @@ export default function CourseView() {
               backgroundColor: Colors.WHITE,
             }}
           >
-            <Intro course={course} />
+            <Intro course={course} enroll={enroll} />
             <Chapters course={course} />
           </View>
         }
