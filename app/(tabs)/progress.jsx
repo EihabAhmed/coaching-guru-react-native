@@ -74,6 +74,7 @@ export default function Progress() {
                   pathname: "/courseView/" + item?.docId,
                   params: {
                     courseParams: JSON.stringify(item),
+                    enrollParams: "false",
                   },
                 })
               }
